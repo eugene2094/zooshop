@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% load thumbnail %}
+<!--{% load sorl_thumbnail %}-->
+{% block content %}
+<h1 class="page-header">Gallery</h1>
+{% for image in images %}
+<div>
+    <h3>{{ image.title }}</h3>
+
+    {% thumbnail image.image '200x200' crop="center" as im %}
+    <img src="{{ im.url }}"  alt="{{image.title}}">
+    {% endthumbnail %}
+<!--    <img src="{{ image.image.url}}" width="400" alt="thumbnail">-->
+
+</div>
+{% endfor %}
+
+{% endblock %}
