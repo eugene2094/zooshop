@@ -8,3 +8,8 @@ def index(request):
     categories = Category.objects.all()
     context = {'products': products, 'categories': categories}
     return render(request, 'index.html', context)
+
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'shop/product_list.html', {'products': products})

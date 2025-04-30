@@ -25,7 +25,7 @@
         <div class="text-end">
             {% if user.is_authenticated %}
                 <a href="{% url 'account:logout' %}" class="btn btn-outline-danger me-2">Вихід</a>
-                <a href="#" class="btn btn-outline-primary">Корзина</a>
+                <a href="{% url 'cart:detail' %}" class="btn btn-outline-primary">Корзина</a>
             {% else %}
                 <a href="{% url 'account:login' %}" class="btn btn-outline-primary me-2">Вхід</a>
                 <a href="{% url 'account:register' %}" class="btn btn-primary">Реєстрація</a>

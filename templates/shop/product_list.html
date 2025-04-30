@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Товари{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Наші товари</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for product in products %}
+    <div class="col">
+      <div class="card h-100">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+          <p class="card-text"><strong>{{ product.price }} грн</strong></p>
+          <a href="{% url 'cart:add' product.id %}" class="btn btn-success">Додати в корзину</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
