@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
@@ -6,67 +5,27 @@ body {
     padding: 0;
 }
 
-
-h1, h2, h5 {
-    color: #343a40;
-}
-
-
-a {
-    color: #0d6efd;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-
-
-aside {
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-
-section {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-.list-group-item {
-    border: none;
-    padding: 10px 15px;
-}
-.list-group-item:hover {
-    background-color: #e9ecef;
-}
-
-/
 header, footer {
     background-color: #ffffff;
+    padding: 1rem 0;
     border-bottom: 1px solid #dee2e6;
 }
-footer {
-    border-top: 1px solid #dee2e6;
-    font-size: 0.9rem;
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-
-.btn-outline-primary, .btn-outline-danger {
-    border-radius: 30px;
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-
-form[role='search'] {
-    width: 300px;
+.btn {
+    margin-left: 0.5rem;
 }
-@media (max-width: 768px) {
-    form[role='search'] {
-        width: 100%;
-    }
+
+.alert {
+    margin-top: 1rem;
 }
