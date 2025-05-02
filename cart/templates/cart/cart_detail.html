@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Кошик — Зоомагазин{% endblock %}
+
+{% block content %}
+<h2>Ваш кошик</h2>
+
+{% if cart %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Кількість</th>
+            <th>Ціна</th>
+            <th>Сума</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>
+                <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price }} грн</td>
+            <td>{{ item.total_price }} грн</td>
+            <td>
+                <form method="post" action="{% url 'cart:cart_remove' item.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">Видалити</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><strong>Загальна сума:</strong> {{ cart.get_total_price }} грн</p>
+
+<a href="{% url 'order:order_list' %}" class="btn btn-success">Оформити замовлення</a>
+{% else %}
+<p>Ваш кошик порожній.</p>
+{% endif %}
+{% endblock %}

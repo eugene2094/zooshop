@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Блог — Зоомагазин{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Блог</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in posts %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content|truncatewords:25 }}</p>
+                <p class="text-muted">Автор: {{ post.author.username }} | {{ post.created_at|date:"d.m.Y" }}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Читати далі</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Поки що немає публікацій.</p>
+    {% endfor %}
+</div>
+{% endblock %}

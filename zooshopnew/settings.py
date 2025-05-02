@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'gallery',
     'account',
     'cart',
-    'order'
+    'order',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -56,12 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'zooshopnew.urls'
 
-TEMPLATES_DIRS = os.path.join(BASE_DIR, "templates")
+# TEMPLATES_DIRS = os.path.join(BASE_DIR, "templates")
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIRS],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.categories_processor',
             ],
         },
     },
@@ -135,4 +137,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.CustomUser'
+
+CART_SESSION_ID = 'cart'
 
