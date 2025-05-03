@@ -1,45 +1,58 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Кошик — Зоомагазин{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'shop/css/style_cart.css' %}">
+{% endblock %}
+
+{% block title %}Ваш кошик{% endblock %}
 
 {% block content %}
-<h2>Ваш кошик</h2>
+<h2 class="cart-header">Ваш кошик</h2>
 
 {% if cart %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>Товар</th>
-            <th>Кількість</th>
-            <th>Ціна</th>
-            <th>Сума</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <td>
-                <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
-            </td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.product.price }} грн</td>
-            <td>{{ item.total_price }} грн</td>
-            <td>
-                <form method="post" action="{% url 'cart:cart_remove' item.product.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-sm btn-danger">Видалити</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table table-bordered cart-table">
+            <thead class="table-light">
+                <tr>
+                    <th>Товар</th>
+                    <th>Ціна</th>
+                    <th>Кількість</th>
+                    <th>Разом</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-2">
+                        <strong>{{ item.product.name }}</strong>
+                    </td>
+                    <td>{{ item.price }} грн</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.total_price }} грн</td>
+                    <td>
+                        <form method="post" action="{% url 'cart:cart_remove' item.product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">✕</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-<p><strong>Загальна сума:</strong> {{ cart.get_total_price }} грн</p>
+    <div class="cart-summary">
+        <p>Загальна сума: <span class="total">{{ cart.get_total_price }} грн</span></p>
+    </div>
 
-<a href="{% url 'order:order_list' %}" class="btn btn-success">Оформити замовлення</a>
+    <div class="cart-actions">
+        <a href="{% url 'order:order_create' %}" class="btn btn-success">Оформити замовлення</a>
+    </div>
+
 {% else %}
-<p>Ваш кошик порожній.</p>
+    <p>Ваш кошик порожній.</p>
 {% endif %}
 {% endblock %}

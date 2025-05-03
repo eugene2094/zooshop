@@ -1,0 +1,27 @@
+<div class="card h-100">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+    {% endif %}
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+        <p class="card-text"><strong>{{ product.price }} грн</strong></p>
+        <a href="{{ product.get_absolute_url }}" class="btn btn-primary mb-2">Детальніше</a>
+
+        {% if show_cart_button %}
+        <form method="post" action="{% url 'cart:cart_add' product.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn btn-outline-success w-100">Додати в кошик</button>
+        </form>
+        {% endif %}
+
+        {% if show_favorite_button %}
+        <form method="post" action="{% url 'shop:add_to_favorites' product.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning w-100 mt-2">⭐ У улюблене</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+

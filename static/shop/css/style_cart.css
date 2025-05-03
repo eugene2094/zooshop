@@ -1,0 +1,35 @@
+/* Корзина: карточный стиль + акцентные цвета */
+.cart-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+.cart-table th, .cart-table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cart-table img {
+    max-width: 80px;
+    border-radius: 8px;
+}
+
+.cart-summary {
+    background-color: #f1f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.cart-summary .total {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #198754;
+}
+
+.cart-actions {
+    text-align: right;
+    margin-top: 20px;
+}

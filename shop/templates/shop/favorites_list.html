@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Улюблені товари{% endblock %}
+
+{% block content %}
+<h2>Ваші улюблені товари</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for product in products %}
+        <div class="col">
+            {% include "shop/includes/product_card.html" with product=product show_cart_button=True show_favorite_button=False %}
+        </div>
+    {% empty %}
+        <p>У вас поки немає улюблених товарів.</p>
+    {% endfor %}
+</div>
+{% endblock %}

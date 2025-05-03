@@ -16,6 +16,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {'slug': ('name',)}
 
+    class Media:
+        css = {
+            'all': ('shop/css/style_admin.css',)
+        }
+
 
 admin.site.register(Product, ProductAdmin)
 

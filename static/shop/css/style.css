@@ -1,31 +1,53 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
-    padding: 0;
 }
 
-header, footer {
-    background-color: #ffffff;
-    padding: 1rem 0;
-    border-bottom: 1px solid #dee2e6;
+h1, h2, h3 {
+    font-weight: 700;
+    color: #343a40;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+/* Баннер */
+.custom-banner {
+    background-color: #198754;
+    border-radius: 12px;
+    min-height: 140px;
+    padding: 20px 30px;
+    overflow: hidden;
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
+.banner-logo img {
+    max-height: 80px;
 }
 
-.btn {
-    margin-left: 0.5rem;
+.banner-text {
+    max-width: 100%;
 }
 
-.alert {
-    margin-top: 1rem;
+.banner-text h1, .banner-text p {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+
+.banner-spacer {
+    width: 100px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .custom-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-logo {
+        margin-bottom: 10px;
+    }
+
+    .banner-spacer {
+        display: none;
+    }
 }

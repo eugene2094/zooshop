@@ -11,7 +11,7 @@ def user_login(request):
         if form.is_valid():
             login(request, form.get_user())
             messages.success(request, 'Вхід виконано успішно!')
-            return redirect('shop:index')  # замените на актуальный URL
+            return redirect('account:login')  # замените на актуальный URL
     else:
         form = UserLoginForm()
     return render(request, 'account/login.html', {'form': form})

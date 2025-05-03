@@ -3,12 +3,24 @@
 {% block title %}Оформлення замовлення{% endblock %}
 
 {% block content %}
-<h2>Оформлення замовлення</h2>
+<h2 class="mb-4">Оформлення замовлення</h2>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type="submit" class="btn btn-primary">Підтвердити замовлення</button>
+    <h4 class="mt-4">Ваш кошик:</h4>
+    <ul class="list-group mb-3">
+        {% for item in cart %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ item.product.name }} ({{ item.quantity }})
+            <span>{{ item.total_price }} грн</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <button type="submit" class="btn btn-success">Оформити замовлення</button>
 </form>
 {% endblock %}
+
+

@@ -1,0 +1,4 @@
+Django>=4.2,<5.3
+pillow>=9.0
+liqpay>=1.1.1
+django-crispy-forms>=2.0
