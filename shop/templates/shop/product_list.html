@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }} — Товари{% elif search_query %}Пошук: {{ search_query }}{% else %}Товари — Зоомагазин{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2 class="mb-3">
+        {% if category %}
+            Товари категорії: {{ category.name }}
+        {% elif search_query %}
+            Результати пошуку: <em>"{{ search_query }}"</em>
+        {% else %}
+            Усі товари
+        {% endif %}
+    </h2>
+
+    <!-- Горизонтальні кнопки категорій -->
+    {% if categories %}
+    <div class="category-buttons mb-4">
+        <a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary me-2 {% if not category %}active{% endif %}">
+            Усі категорії
+        </a>
+        {% for cat in categories %}
+        <a href="{{ cat.get_absolute_url }}" class="btn btn-outline-success me-2 {% if category and category.id == cat.id %}active{% endif %}">
+            {{ cat.name }}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class="row">
+    <!-- Основна частина -->
+    <section class="col-md-10 mx-auto">
+        {% if category or search_query %}
+        <div class="text-end mb-3">
+            <a href="{% url 'shop:product_list' %}?page=1" class="btn btn-outline-secondary btn-sm">
+                🧹 Очистити фільтр
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for product in page_obj %}
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <strong class="text-success">{{ product.price }} грн</strong>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'shop:product_detail' product.id product.slug %}" class="btn btn-sm btn-outline-secondary">Детальніше</a>
+                            <a href="{% url 'cart:cart_add' product.id %}" class="btn btn-sm btn-outline-primary">До кошика</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>Немає товарів за обраними критеріями.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Пагінація -->
+        {% if page_obj.has_other_pages %}
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">←</a></li>
+                {% endif %}
+                <li class="page-item disabled"><span class="page-link">Сторінка {{ page_obj.number }}</span></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">→</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </section>
+
+    <!-- Блог -->
+    <aside class="col-md-2">
+        <h5>Блог</h5>
+        <ul class="list-group">
+            {% for post in blog_posts %}
+                <li class="list-group-item">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title|truncatewords:6 }}</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">Немає публікацій</li>
+            {% endfor %}
+        </ul>
+    </aside>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.name }} — Зоомагазин{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded shadow">
+        {% else %}
+            <img src="{% static 'shop/images/no-image.png' %}" alt="Немає зображення" class="img-fluid rounded shadow">
+        {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p><strong>Ціна:</strong> {{ product.price }} грн</p>
+        <p><strong>Наявність:</strong>
+            {% if product.available %}
+                <span class="text-success">В наявності</span>
+            {% else %}
+                <span class="text-danger">Немає</span>
+            {% endif %}
+        </p>
+
+        {% if product.available %}
+        <form method="post" action="{% url 'cart:cart_add' product.id %}">
+            {% csrf_token %}
+            <div class="input-group mb-3" style="max-width: 200px;">
+                <input type="number" name="quantity" value="1" min="1" class="form-control">
+                <button type="submit" class="btn btn-success">Додати в кошик</button>
+            </div>
+        </form>
+        {% endif %}
+
+        <a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary mt-2">← Назад до списку товарів</a>
+    </div>
+</div>
+{% endblock %}
