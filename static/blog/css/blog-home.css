@@ -1,17 +1,37 @@
-/*!
- * Start Bootstrap - Blog Home (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
 }
 
-footer {
-    margin: 50px 0;
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
-.active{
-  color: red;
-  font-weight:bold;
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.text-muted {
+    font-size: 0.85rem;
+    color: #6c757d !important;
+}
+
+.btn-outline-primary {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 8px;
 }

@@ -1,13 +1,29 @@
-/*!
- * Start Bootstrap - Blog Post (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+.blog-post h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
 }
 
-footer {
-    margin: 50px 0;
+.blog-content {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.blog-post img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .blog-post h2 {
+        font-size: 1.5rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+    }
 }

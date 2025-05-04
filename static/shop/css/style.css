@@ -51,3 +51,33 @@ h1, h2, h3 {
         display: none;
     }
 }
+
+.site-footer {
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.site-footer a:hover {
+    color: #198754;
+    text-decoration: underline;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-buttons .btn {
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+}
+
+.category-buttons .btn.active,
+.category-buttons .btn:hover {
+    background-color: #198754;
+    color: #fff;
+    border-color: #198754;
+}
