@@ -11,7 +11,7 @@ def user_login(request):
         if form.is_valid():
             login(request, form.get_user())
             messages.success(request, 'Вхід виконано успішно!')
-            return redirect('account:login')  # замените на актуальный URL
+            return redirect('shop:product_list')  # замените на актуальный URL
     else:
         form = UserLoginForm()
     return render(request, 'account/login.html', {'form': form})
@@ -27,9 +27,10 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Реєстрація успішна! Увійдіть у свій обліковий запис.')
-            return redirect('account:login')
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Реєстрація успішна! Вас автоматично увійшло в систему.')
+            return redirect('shop:product_list')
     else:
         form = UserRegisterForm()
     return render(request, 'account/register.html', {'form': form})
